@@ -70,7 +70,7 @@ const Login = () => {
                 />
                 <TextInput
                   style={styles.input}
-                  placeholder="Enter your email"
+                  placeholder="Enter your password"
                   placeholderTextColor={COLORS.placeholderText}
                   value={password}
                   onChangeText={setPassword}
@@ -103,8 +103,8 @@ const Login = () => {
             </TouchableOpacity>
 
             <View style={styles.footer}>
-              <Text style={styles.footerText}>Don't have an account?</Text>
-              <Link href="/signup" asChild>
+              <Text style={styles.footerText}>{`Don't have an account?`}</Text>
+              <Link href="/Signup" asChild>
                 <TouchableOpacity>
                   <Text style={styles.link}>Sign Up</Text>
                 </TouchableOpacity>

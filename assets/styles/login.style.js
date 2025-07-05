@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import COLORS from "../../constants/color";
 
 const { width } = Dimensions.get("window");
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: COLORS.background,
     padding: 20,
-    justifyContent: "center",
+    justifyContent: "start",
   },
   scrollViewStyle: {
     flex: 1,

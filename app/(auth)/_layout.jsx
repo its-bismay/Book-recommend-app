@@ -1,8 +1,5 @@
-import { Stack } from 'expo-router'
-import { View, Text } from 'react-native'
+import { Stack } from "expo-router";
 const AuthStack = () => {
-  return (
-<Stack screenOptions={{headerShown: false}}/>
-  )
-}
-export default AuthStack
+  return <Stack screenOptions={{ headerShown: false }} />;
+};
+export default AuthStack;
