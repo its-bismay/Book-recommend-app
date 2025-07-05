@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   KeyboardAvoidingView,
   Platform,
   Text,
@@ -12,16 +13,22 @@ import {
 } from "react-native";
 import styles from "../../assets/styles/signup.style";
 import COLORS from "../../constants/color";
+import { useAuthStore } from "../../store/authStore";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [isLooading, setIsLoading] = useState(false);
+
+  const { user, isLoading, register } = useAuthStore();
 
   const router = useRouter();
-  const handleSignup = () => {};
+  const handleSignup = async () => {
+    const result = await register(username, email, password);
+
+    if (!result.success) Alert.alert("Error", result.error);
+  };
 
   return (
     <KeyboardAvoidingView
@@ -111,9 +118,9 @@ const Signup = () => {
             <TouchableOpacity
               style={styles.button}
               onPress={handleSignup}
-              disabled={isLooading}
+              disabled={isLoading}
             >
-              {isLooading ? (
+              {isLoading ? (
                 <ActivityIndicator color="#fff" />
               ) : (
                 <Text style={styles.buttonText}>Signup</Text>
@@ -125,7 +132,7 @@ const Signup = () => {
                 style={styles.footerText}
               >{`Already have an account?`}</Text>
               <TouchableOpacity onPress={() => router.back()}>
-                <Text style={styles.link}>Login</Text>
+                <Text style={styles.link}>Log In</Text>
               </TouchableOpacity>
             </View>
           </View>
