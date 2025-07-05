@@ -3,6 +3,7 @@ import { Link } from "expo-router";
 import { useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -13,14 +14,19 @@ import {
 } from "react-native";
 import styles from "../../assets/styles/login.style";
 import COLORS from "../../constants/color";
+import { useAuthStore } from "../../store/authStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [isLooading, setIsLoading] = useState(false);
+  const { isLoading, login } = useAuthStore();
 
-  const handaleLogin = () => {};
+  const handaleLogin = async () => {
+    const result = await login(email, password);
+
+    if (!result.success) Alert.alert("Error", result.error);
+  };
 
   return (
     <KeyboardAvoidingView
@@ -93,9 +99,9 @@ const Login = () => {
             <TouchableOpacity
               style={styles.button}
               onPress={handaleLogin}
-              disabled={isLooading}
+              disabled={isLoading}
             >
-              {isLooading ? (
+              {isLoading ? (
                 <ActivityIndicator color="#fff" />
               ) : (
                 <Text style={styles.buttonText}>Login</Text>
