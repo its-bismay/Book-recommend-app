@@ -1,0 +1,1 @@
+export const API_URL = "https://book-service-backend.onrender.com/api"
